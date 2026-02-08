@@ -5,8 +5,8 @@ using HashTable.ClosedAddressing;
 using HashTable.Content;
 using HashTable.HashFunctions;
 
-//DoTheRoutine<CloseAddressingHashTable>( DotNetHash.Hash);
-BenchmarkRunner.Run<BenchmarkBench>();
+DoTheRoutine<CloseAddressingHashTable>( DotNetHash.Hash);
+//BenchmarkRunner.Run<BenchmarkBench>();
 
 return;
 

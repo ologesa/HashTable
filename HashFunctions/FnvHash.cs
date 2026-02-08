@@ -11,11 +11,8 @@ public static class FnvHash
 
         foreach (char c in data)
         {
-            unchecked
-            {
-                hash ^= c;
-                hash *= FnvPrime;
-            }
+            hash ^= c;
+            hash *= FnvPrime;
         }
 
         return hash;
