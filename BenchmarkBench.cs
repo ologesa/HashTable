@@ -14,7 +14,7 @@ public class BenchmarkBench
     [Params(HashKind.DotNet, HashKind.Djb2, HashKind.Fnv)]
     public HashKind HashType { get; [UsedImplicitly] set; }
 
-    [Params(HashTableAlgorithmKind.ClosedAddressing)]
+    [Params(HashTableAlgorithmKind.ClosedAddressing, HashTableAlgorithmKind.OpenAddressingLP)]
     public HashTableAlgorithmKind HashTableAlgorithmType { get; [UsedImplicitly] set; }
 
     [GlobalSetup]
@@ -27,14 +27,14 @@ public class BenchmarkBench
     [IterationSetup]
     public void Setup()
     {
-        _hashTable = CreateTable(HashTableAlgorithmType, HashType);
+        _hashTable = CreateHashTableImplementation(HashTableAlgorithmType, HashType);
     }
 
     [Benchmark]
     public void HashTableBenchmark()
         => DoTheRoutine(_hashTable, TextWriter.Null);
 
-    private static IHashTable CreateTable(HashTableAlgorithmKind hashTableAlgorithmKind, HashKind hashKind)
+    private static IHashTable CreateHashTableImplementation(HashTableAlgorithmKind hashTableAlgorithmKind, HashKind hashKind)
     {
         var hashFunction = GetHashFunction(hashKind);
 
@@ -46,6 +46,7 @@ public class BenchmarkBench
         return hashTableAlgorithmKind switch
         {
             HashTableAlgorithmKind.ClosedAddressing => new CloseAddressingHashTable { HashFunction = hash },
+            HashTableAlgorithmKind.OpenAddressingLP => new OpenAddressingLinearProbing.OpenAddressingLinearProbing() { HashFunction = hash },
             _ => throw new ArgumentOutOfRangeException()
         };
     }

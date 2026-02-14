@@ -4,8 +4,10 @@ using HashTable;
 using HashTable.ClosedAddressing;
 using HashTable.Content;
 using HashTable.HashFunctions;
+using HashTable.OpenAddressingLinearProbing;
 
 //DoTheRoutine<CloseAddressingHashTable>( DotNetHash.Hash);
+//DoTheRoutine<OpenAddressingLinearProbing>( DotNetHash.Hash);
 BenchmarkRunner.Run<BenchmarkBench>();
 
 return;

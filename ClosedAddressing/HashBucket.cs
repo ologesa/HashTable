@@ -25,7 +25,7 @@ public sealed class HashBucket
     public void Add(string key, int value)
     {
         if(_count == Capacity)
-            throw new Exception("Bucket is full");
+            throw new HashTableException("Bucket is full");
         _entries[_count].Key = key;
         _entries[_count].Value = value;
         _count++;
