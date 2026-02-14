@@ -1,5 +1,5 @@
 # HashTable
-A project to study different strategies to implement and efficient HasTable
+A project to study different strategies to implement an efficient HasTable
 
 # Toy problem
 Our target is to insert the entire works of Shakespeare into a hash table and then search for a specific phrase,
@@ -27,6 +27,7 @@ contains a list of key-value pairs whose keys hash to the same index.
 | HashTableBenchmark | Fnv      | ClosedAddressing       | 77.90 ms | 1.115 ms | 0.988 ms |         - |
 | HashTableBenchmark | Fnv      | OpenAddressingLP       | 30.66 ms | 0.536 ms | 0.502 ms |         - |
 
+So far OpenAddressingLP + Djb2 function is the best. 
 
 # References
 https://en.wikipedia.org/wiki/Category:Hashing
