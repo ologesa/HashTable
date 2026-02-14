@@ -23,16 +23,17 @@ public sealed class OpenAddressingLinearProbing: IHashTable
         uint hashIndex = HashFunction(key) % Capacity;
         for (uint i = hashIndex; i < Capacity + hashIndex; i++)
         {
-            if (!_entries[i % Capacity].Used)
+            ref var entry = ref _entries[i % Capacity];
+            if (!entry.Used)
             {
-                _entries[i % Capacity].Key = key;
-                _entries[i % Capacity].Used = true;
-                _entries[i % Capacity].Value = 1;
+                entry.Key = key;
+                entry.Used = true;
+                entry.Value = 1;
                 return;
             }
-            else if( _entries[i % Capacity].Key == key)
+            if( entry.Key == key)
             {
-                _entries[i % Capacity].Value ++;
+                entry.Value ++;
                 return;
             }
         }
@@ -44,14 +45,17 @@ public sealed class OpenAddressingLinearProbing: IHashTable
         uint hashIndex = HashFunction(key) % Capacity;
         for (uint i = hashIndex; i < Capacity + hashIndex; i++)
         {
-            if (_entries[i % Capacity].Key == key) 
-                return _entries[i % Capacity].Value;
+            ref var entry = ref _entries[i % Capacity];
+            if (!entry.Used) 
+                return 0;
+            if (entry.Key == key) 
+                return entry.Value;
         }
 
         return 0;
     }
 
-    public void Clear()
+    public void Dispose()
     {
         ArrayPool<HashTableEntry>.Shared.Return(_entries); 
     }

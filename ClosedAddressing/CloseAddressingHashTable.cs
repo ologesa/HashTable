@@ -37,7 +37,7 @@ public sealed class CloseAddressingHashTable : IHashTable
         return found ? entry.Value : 0;
     }
 
-    public void Clear()
+    public void Dispose()
     {
         for (int i = 0; i < Buckets; i++)
             _buckets[i].Clear();

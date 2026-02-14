@@ -30,6 +30,12 @@ public class BenchmarkBench
         _hashTable = CreateHashTableImplementation(HashTableAlgorithmType, HashType);
     }
 
+    [IterationCleanup]
+    public void Cleanup()
+    {
+        _hashTable.Dispose();
+    }
+
     [Benchmark]
     public void HashTableBenchmark()
         => DoTheRoutine(_hashTable, TextWriter.Null);
@@ -55,8 +61,8 @@ public class BenchmarkBench
         => kind switch
         {
             HashKind.DotNet => DotNetHash.Hash,
-            HashKind.Djb2   => Djb2Hash.Hash,
-            HashKind.Fnv    => FnvHash.Hash,
+            HashKind.Djb2 => Djb2Hash.Hash,
+            HashKind.Fnv => FnvHash.Hash,
             _ => throw new ArgumentOutOfRangeException()
         };
 
