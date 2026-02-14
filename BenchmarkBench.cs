@@ -11,10 +11,10 @@ public class BenchmarkBench
     private IHashTable _hashTable = null!;
     private readonly List<string> _words = [];
 
-    [Params(HashKind.DotNet, HashKind.Djb2, HashKind.Fnv)]
+    [Params(HashKind.Djb2, HashKind.Fnv)]
     public HashKind HashType { get; [UsedImplicitly] set; }
 
-    [Params(HashTableAlgorithmKind.ClosedAddressing, HashTableAlgorithmKind.OpenAddressingLP)]
+    [Params(HashTableAlgorithmKind.ClosedAddressing, HashTableAlgorithmKind.OpenAddressingLP, HashTableAlgorithmKind.OpenAddressingRR)]
     public HashTableAlgorithmKind HashTableAlgorithmType { get; [UsedImplicitly] set; }
 
     [GlobalSetup]
@@ -52,7 +52,8 @@ public class BenchmarkBench
         return hashTableAlgorithmKind switch
         {
             HashTableAlgorithmKind.ClosedAddressing => new CloseAddressingHashTable { HashFunction = hash },
-            HashTableAlgorithmKind.OpenAddressingLP => new OpenAddressingLinearProbing.OpenAddressingLinearProbing() { HashFunction = hash },
+            HashTableAlgorithmKind.OpenAddressingLP => new OpenAddressingLinearProbing.OpenAddressingLinearProbing { HashFunction = hash },
+            HashTableAlgorithmKind.OpenAddressingRR => new OpenAddressingRobinHood.OpenAddressingRobinHood { HashFunction = hash },
             _ => throw new ArgumentOutOfRangeException()
         };
     }
@@ -83,6 +84,7 @@ public class BenchmarkBench
             tw.WriteLine(hashTable.GetValue("is"));
             tw.WriteLine(hashTable.GetValue("the"));
             tw.WriteLine(hashTable.GetValue("question"));
+            tw.WriteLine(hashTable.GetValue("ThisValueWillNotBePresentInTheHashTable"));
         }
     }
 }

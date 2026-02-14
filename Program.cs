@@ -4,9 +4,11 @@ using HashTable.ClosedAddressing;
 using HashTable.Content;
 using HashTable.HashFunctions;
 using HashTable.OpenAddressingLinearProbing;
+using HashTable.OpenAddressingRobinHood;
 
-//DoTheRoutine<CloseAddressingHashTable>( DotNetHash.Hash);
-//DoTheRoutine<OpenAddressingLinearProbing>( DotNetHash.Hash);
+// DoTheRoutine<CloseAddressingHashTable>( Djb2Hash.Hash);
+// DoTheRoutine<OpenAddressingLinearProbing>( Djb2Hash.Hash);
+// DoTheRoutine<OpenAddressingRobinHood>( Djb2Hash.Hash);
 BenchmarkRunner.Run<BenchmarkBench>();
 
 return;
@@ -29,6 +31,7 @@ static void DoTheRoutine<T>(HashFunction hash)
         Console.Out.WriteLine(hashTable.GetValue("not"));
         Console.Out.WriteLine(hashTable.GetValue("to"));
         Console.Out.WriteLine(hashTable.GetValue("be"));
+        Console.Out.WriteLine($"LoadFactor: {hashTable.GetLoadFactor()}");
     }
     finally
     {

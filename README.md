@@ -15,17 +15,21 @@ contains a list of key-value pairs whose keys hash to the same index.
 2. FNV-1a (https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function)
 3. DJB2 (https://theartincode.stanis.me/008-djb2/)
 
-# Results
+# Algorithms
+1. ClosedAddressing
+2. OpenAddressing Linear Probing (https://en.wikipedia.org/wiki/Open_addressing)
+3. OpenAddressing Round Robin (https://cs.uwaterloo.ca/research/tr/1986/CS-86-14.pdf)
 
+# Results
 
 | Method             | HashType | HashTableAlgorithmType | Mean     | Error    | StdDev   | Allocated |
 |------------------- |--------- |----------------------- |---------:|---------:|---------:|----------:|
-| HashTableBenchmark | DotNet   | ClosedAddressing       | 79.81 ms | 0.718 ms | 0.600 ms |         - |
-| HashTableBenchmark | DotNet   | OpenAddressingLP       | 33.38 ms | 0.665 ms | 1.249 ms |         - |
-| HashTableBenchmark | Djb2     | ClosedAddressing       | 74.95 ms | 1.091 ms | 1.021 ms |         - |
-| HashTableBenchmark | Djb2     | OpenAddressingLP       | 30.44 ms | 0.597 ms | 0.529 ms |         - |
-| HashTableBenchmark | Fnv      | ClosedAddressing       | 77.90 ms | 1.115 ms | 0.988 ms |         - |
-| HashTableBenchmark | Fnv      | OpenAddressingLP       | 30.66 ms | 0.536 ms | 0.502 ms |         - |
+| HashTableBenchmark | Djb2     | ClosedAddressing       | 96.63 ms | 1.507 ms | 1.410 ms |         - |
+| HashTableBenchmark | Djb2     | OpenAddressingLP       | 33.66 ms | 0.619 ms | 0.608 ms |         - |
+| HashTableBenchmark | Djb2     | OpenAddressingRR       | 56.74 ms | 1.106 ms | 1.035 ms |         - |
+| HashTableBenchmark | Fnv      | ClosedAddressing       | 98.55 ms | 1.330 ms | 1.179 ms |         - |
+| HashTableBenchmark | Fnv      | OpenAddressingLP       | 33.99 ms | 0.648 ms | 0.636 ms |         - |
+| HashTableBenchmark | Fnv      | OpenAddressingRR       | 44.32 ms | 0.730 ms | 0.683 ms |         - |
 
 So far OpenAddressingLP + Djb2 function is the best. 
 

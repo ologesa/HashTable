@@ -5,7 +5,8 @@ namespace HashTable.ClosedAddressing;
 
 public sealed class CloseAddressingHashTable : IHashTable
 {
-    private const int Buckets = 500;
+    private const int Buckets = 400;
+    private int _count = 0;
     private readonly HashBucket[] _buckets;
     public HashFunction HashFunction { get; set; } = DotNetHash.Hash; // just a default
 
@@ -27,6 +28,7 @@ public sealed class CloseAddressingHashTable : IHashTable
             return;
         }
         bucket.Add(key, 1);
+        _count++;
     }
 
     public int GetValue(string key)
@@ -42,5 +44,10 @@ public sealed class CloseAddressingHashTable : IHashTable
         for (int i = 0; i < Buckets; i++)
             _buckets[i].Clear();
         ArrayPool<HashBucket>.Shared.Return(_buckets);
+    }
+
+    public double GetLoadFactor()
+    {
+        return _count / (Buckets * 100.0);
     }
 }
