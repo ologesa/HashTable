@@ -17,14 +17,15 @@ contains a list of key-value pairs whose keys hash to the same index.
 
 # Results
 
-(so far only linear probing)
 
-| Method                     | Mean     | Error    | StdDev   | Allocated |
-|--------------------------- |---------:|---------:|---------:|----------:|
-| ClosedAddressingDotNetHash | 82.39 ms | 0.736 ms | 0.652 ms |         - |
-| ClosedAddressingDjb2Hash   | 76.43 ms | 1.459 ms | 3.524 ms |         - |
-| ClosedAddressingFnvHash    | 78.91 ms | 1.127 ms | 0.999 ms |         - |
-
+| Method             | HashType | HashTableAlgorithmType | Mean     | Error    | StdDev   | Allocated |
+|------------------- |--------- |----------------------- |---------:|---------:|---------:|----------:|
+| HashTableBenchmark | DotNet   | ClosedAddressing       | 79.81 ms | 0.718 ms | 0.600 ms |         - |
+| HashTableBenchmark | DotNet   | OpenAddressingLP       | 33.38 ms | 0.665 ms | 1.249 ms |         - |
+| HashTableBenchmark | Djb2     | ClosedAddressing       | 74.95 ms | 1.091 ms | 1.021 ms |         - |
+| HashTableBenchmark | Djb2     | OpenAddressingLP       | 30.44 ms | 0.597 ms | 0.529 ms |         - |
+| HashTableBenchmark | Fnv      | ClosedAddressing       | 77.90 ms | 1.115 ms | 0.988 ms |         - |
+| HashTableBenchmark | Fnv      | OpenAddressingLP       | 30.66 ms | 0.536 ms | 0.502 ms |         - |
 
 
 # References
