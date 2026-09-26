@@ -56,3 +56,8 @@ nunit-*.xml
 riderModule.iml
 /_ReSharper.Caches/
 .idea/
+
+# IDE / user-specific
+.vs/
+*.user
+*.suo

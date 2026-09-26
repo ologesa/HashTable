@@ -16,9 +16,6 @@
       <None Update="Content\Shakespeare.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="Content\TheCatcherInTheRye.txt">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
       <None Update="Content\Test.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
